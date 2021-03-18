@@ -1,0 +1,25 @@
+@startuml app-server-init
+
+앱 -> 앱 : 사용자 앱 최초 실행
+activate 앱
+앱 -> 앱 : Firebase API 키 생성
+앱 -> 앱 : 회원가입 여부 확인 & 로그인
+alt 로그인 사용자
+activate 서버
+앱 ->> 서버 : ID, PW(암호화), API(암호화) 키 전달
+else 로그인 안한 사용자
+앱 ->> 서버 : ID(랜덤생성: 현재시간+랜덤값)\nAPI(암호화) 키 전달
+end
+deactivate 앱
+
+
+alt 로그인 사용자인 경우
+서버 ->> DB : ID, PW, API 정보 저장
+else 로그인 안한 사용자인 경우
+서버 ->> DB : ID, API 정보 저장
+
+end
+
+@enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-init.puml

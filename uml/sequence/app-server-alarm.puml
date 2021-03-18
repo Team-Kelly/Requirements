@@ -1,18 +1,19 @@
 @startuml app-server-alarm
 ...오랜 시간 후.....
-앱 -> 앱 : 백그라운드 대기
+앱 ->> 앱 : 백그라운드 대기
 서버 -> 서버 : 지정된 시간 도달
 activate 서버
-서버 -> Firebase : Push Notification 요청
+서버 ->> Firebase : Push Notification 요청
 deactivate 서버
 activate Firebase
-note over Firebase: Firebase에 따라 API Access Point 변화
-Firebase -> 앱 : Push
+Firebase -> Firebase: Push Notification 처리
+Firebase ->> 앱 : Push
 deactivate Firebase
-activate 앱
-앱 -> 앱 : Push 알림 + API 정보 데이터 TTS 알림
-note over 앱 : Firebase에 따라 API Access Point 변화
-deactivate 앱
+
+group API 호출
+!include ./app-server-api.puml
+end
+
 @enduml
 
 'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-alarm.puml
