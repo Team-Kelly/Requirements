@@ -3,7 +3,7 @@
 앱 -> 앱 : 스마트폰 센서 트리거 동작 시
 
 group API 호출
-!include ./app-server-api.puml
+!include https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-api.puml
 end
 
 @enduml
