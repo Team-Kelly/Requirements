@@ -1,0 +1,13 @@
+@startuml app-server-api
+...오랜 시간 후.....
+앱 -> 앱 : 위치 도달 시
+activate 앱
+앱 -> 서버 : API 데이터 요청
+activate 서버
+note over 서버 : API 인자 전달방식: 미정
+서버 -> 서버 : API 코드 실행 (Python)
+서버 -> 서버 : 결과값 전달
+deactivate 서버
+앱 -> 앱 : 해당 정보 TTS 알림
+deactivate 앱
+@enduml
