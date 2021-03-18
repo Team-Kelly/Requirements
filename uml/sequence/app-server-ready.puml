@@ -11,3 +11,5 @@ deactivate 서버
 deactivate 앱
 ...트리거 시점까지 대기...
 @enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-ready.puml

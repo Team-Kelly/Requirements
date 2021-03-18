@@ -11,3 +11,5 @@ deactivate 서버
 앱 -> 앱 : 해당 정보 TTS 알림
 deactivate 앱
 @enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-api.puml

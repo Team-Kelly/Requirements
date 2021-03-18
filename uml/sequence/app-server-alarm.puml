@@ -14,3 +14,5 @@ activate 앱
 note over 앱 : Firebase에 따라 API Access Point 변화
 deactivate 앱
 @enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-alarm.puml
