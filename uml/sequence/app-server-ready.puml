@@ -2,14 +2,17 @@
 앱 -> 앱 : 사용자가 알람을 설정
 activate 앱
 앱 -> 앱 : Trigger: 시간인지 위치인지 확인
-앱 -> 서버 : **IF(Trig = 시간)**\nID, API, Trigger(시간)
+alt 트리거가 시간인 경우
+앱 ->> 서버 : ID, API, Trigger(시간)
 activate 서버
 서버 -> 서버 : DB에 ID, TRIGGER, API 추가
-서버 -> 서버 : 지정 시간까지 대기
+서버 -> 서버 : 지정 시간까지 대기 -> (2)
 deactivate 서버
-앱 -> 앱 : **IF(Trig = 위치)**\nAPI, Trigger(위치)
+else 트리거가 시간이 아닌 경우
+앱 ->> 앱 : API, Trigger(스마트폰 기반 센서)
 deactivate 앱
-...트리거 시점까지 대기...
+end
+...트리거 시점까지 대기 -> **(3)** ...
 @enduml
 
 'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-ready.puml

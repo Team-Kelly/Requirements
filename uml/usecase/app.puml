@@ -1,0 +1,50 @@
+@startuml app
+
+'left to right direction
+
+actor "사용자" as user
+rectangle APP {
+  usecase "앱 시작" as S1
+  usecase "회원 등록" as S2
+
+  rectangle 메인화면 as M {
+    usecase "알람 설정" as S3
+    usecase "API 스토어" as S31 #aliceblue;line:blue;line.dotted;text:blue
+    usecase "API 추가" as S32 #aliceblue;line:blue;line.dotted;text:blue
+
+        
+    rectangle 트리거 as T {
+        usecase "위치" as T1
+        usecase "시간" as T2
+        usecase "기타..." as T3
+    }
+
+    rectangle API as A #aliceblue;line:blue;text:blue {
+        usecase "날씨" as A1
+        usecase "특정 버스의\n특정 정류장 도착 정보" as A2
+        usecase "주식정보" as A3
+        usecase "코인정보" as A4
+        usecase "기타..." as A5
+    }
+  }
+
+  usecase "알람 및 정보 표시" as S4 
+  usecase "트리거 동작 시 알람 표시\n(noti, 모달)" as S5
+
+}
+
+user -> S1
+S1 -> S2
+S2 -down-> S3 
+S2 -down-> S31 #blue
+S31 -down-> S32 #blue
+S32 -right- A #blue
+S3 -down-> T
+S3 -down-> A
+T -down-> S4
+A -right-> S4
+S4 <-down-> S5
+
+@enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/usecase/app.puml

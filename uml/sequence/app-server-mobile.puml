@@ -1,0 +1,11 @@
+@startuml app-server-mobile
+...(3) 오랜 시간 후.....
+앱 -> 앱 : 스마트폰 센서 트리거 동작 시
+
+group API 호출
+!include ./app-server-api.puml
+end
+
+@enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/sequence/app-server-mobile.puml
