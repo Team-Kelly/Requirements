@@ -1,0 +1,32 @@
+@startuml server-api
+
+state "버스 API" as busState
+busState: - 버스 번호
+busState: - 버스 정류장 번호
+
+state "날씨 API" as weatherState
+weatherState: - 지역 정보
+
+state "주식 API" as stockState
+stockState: - 종목번호
+
+
+state "data" as dataBus
+dataBus: 버스 도착 시간 정보 (int)
+
+state "data" as dataWeather
+dataWeather: 날씨 정보..? (?)
+
+state "data" as dataStock
+dataStock: 주식 가격 (double)
+
+
+
+[*] --> busState
+[*] --> weatherState
+[*] --> stockState
+busState --> dataBus
+weatherState --> dataWeather
+stockState --> dataStock
+
+@enduml

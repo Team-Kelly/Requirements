@@ -1,0 +1,69 @@
+@startuml AppClassDiagram
+
+skinparam classAttributeIconSize 0
+
+abstract class Alarm {
+    +int iterative
+    +DateTime time
+    +APIData data
+}
+
+class WeatherAlarm {
+    +int iterative
+    +DateTime time
+    +WeatherAPIData data
+}
+
+class TransportAlarm {
+    +int iterative
+    +DateTime time
+    +TransportAPIData data
+}
+
+abstract class APIData {
+    +void getCurrData()
+}
+
+class WeatherAPIData {
+    +double latitude
+    +double longitude
+    +enum WeatherState weather
+    +void getCurrentLocation()
+    +void getCurrentWeather()
+}
+
+interface TransportAPIData {
+    +int leftTime
+    +int stationId
+    +String lineName
+    +void getCurrData()
+}
+
+class SubwayAPIData {
+    +int leftTime
+    +int stationId
+    +String lineName
+    +void getCurrData()
+}
+
+class BusAPIData {
+    +int leftTime
+    +int busId
+    +String lineName
+    +int stationId
+    +void getCurrData()
+}
+
+Alarm *-right- APIData
+Alarm <-- WeatherAlarm
+Alarm <-- TransportAlarm
+
+APIData <-- WeatherAPIData
+APIData <-- SubwayAPIData
+APIData <-- BusAPIData
+
+TransportAPIData <-- SubwayAPIData
+TransportAPIData <-- BusAPIData
+
+
+@enduml

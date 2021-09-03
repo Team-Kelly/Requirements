@@ -1,0 +1,51 @@
+@startuml AppWidgetStateDiagram
+
+hide empty description
+
+[*] --> IntroView
+state c1 <<choice>>
+state f1 <<fork>>
+state j1 <<join>>
+
+IntroView --> c1
+note right of IntroView : Splash 화면과 다름
+
+c1 --> WelcomeView : 앱을 처음 실행한 경우
+c1 --> MainView : 이미 앱을 한 번이라도 실행한 경우
+WelcomeView --> MainView
+
+MainView --> f1
+f1 --> HomeView
+f1 --> WeatherView
+f1 --> TransportView
+f1 --> SettingView
+f1 --> SideBarView
+
+HomeView --> f1
+WeatherView --> f1
+TransportView --> f1
+SettingView --> f1
+SideBarView --> f1
+
+state MainView {
+    [*] --> showAppBar
+    showAppBar --> showNavBar
+    showNavBar --> changeMainViewContainer : 네비게이션 아이콘 클릭
+    changeMainViewContainer --> showNavBar
+    showAppBar --> showSideBar : 햄버거 클릭
+    showSideBar --> showAppBar
+}
+
+
+HomeView --> j1
+WeatherView --> j1
+TransportView --> j1
+
+
+j1 --> timeSetView
+note right of timeSetView : 보강 필요
+
+timeSetView --> f1
+
+
+@enduml

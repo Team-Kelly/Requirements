@@ -1,0 +1,23 @@
+@startuml apply-api
+
+|사용자|
+|서버|
+|개발자|
+
+start
+:파이썬 크롤링 코드 작성;
+:서버에 업로드;
+|서버|
+if(유효성 검사) then (True)
+    :확인;
+else (False)
+    :드롭;
+endif
+
+
+stop
+
+
+
+
+@enduml

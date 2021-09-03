@@ -1,0 +1,27 @@
+@startuml server
+
+'left to right direction
+
+actor "개발자" as dev
+rectangle CONSOLE {
+  usecase "홈페이지 접속" as DS1
+  usecase "개발자 계정 로그인" as DS2
+
+  rectangle "API 관리" as APII {
+    usecase "API 생성 및 python 코드 등록" as Z1
+    usecase "API 인터페이스 검사" as Z2
+    usecase "API 마켓 등록" as API2 #aliceblue;line:blue;line.dotted;text:blue
+  }
+
+  dev -down-> DS1
+  DS1 -> DS2
+  DS2 -> Z1
+  Z1 -> Z2
+  Z2 -> API2
+
+}
+
+
+@enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/usecase/server.puml

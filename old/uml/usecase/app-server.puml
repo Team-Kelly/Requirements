@@ -1,0 +1,79 @@
+@startuml app
+
+'left to right direction
+
+actor "사용자" as user
+rectangle APP {
+  usecase "앱 시작" as S1
+  usecase "회원 등록" as S2
+
+  rectangle 메인화면 as M {
+    usecase "알람 설정" as S3
+    usecase "API 스토어" as S31 #aliceblue;line:blue;line.dotted;text:blue
+    usecase "API 추가" as S32 #aliceblue;line:blue;line.dotted;text:blue
+
+        
+    rectangle 트리거 as T {
+        usecase "위치" as T1
+        usecase "시간" as T2
+        usecase "기타..." as T3
+    }
+
+    rectangle API as API1 #aliceblue;line:blue;text:blue {
+        usecase "날씨" as A1
+        usecase "특정 버스의\n특정 정류장 도착 정보" as A2
+        usecase "주식정보" as A3
+        usecase "코인정보" as A4
+        usecase "기타..." as A5
+    }
+  }
+
+  usecase "알람 및 정보 표시" as S4 
+  usecase "트리거 동작 시 알람 표시\n(noti, 모달)" as S5
+
+}
+
+user -> S1
+S1 -> S2
+S2 -down-> S3 
+S2 -down-> S31 #blue
+S31 -down-> S32 #blue
+S32 -right- API1 #blue
+S3 -down-> T
+S3 -down-> API1
+T -down-> S4
+API1 -right-> S4
+S4 <-down-> S5
+
+
+
+'left to right direction
+
+actor "개발자" as dev
+rectangle CONSOLE {
+  usecase "홈페이지 접속" as DS1
+  usecase "개발자 계정 로그인" as DS2
+
+  rectangle "API 관리" as APII {
+    usecase "API 생성 및 python 코드 등록" as Z1
+    usecase "API 인터페이스 검사" as Z2
+    usecase "API 마켓 등록" as API2 #aliceblue;line:blue;line.dotted;text:blue
+  }
+
+  dev -down-> DS1
+  DS1 -> DS2
+  DS2 -> Z1
+  Z1 -> Z2
+  Z2 -> API2
+
+  API1 <-up-> API2 #line:blue;line.bold;
+
+
+
+}
+
+
+
+@enduml
+
+'https://raw.githubusercontent.com/Team-Kelly/Requirements/main/uml/usecase/app.puml
