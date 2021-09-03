@@ -6,14 +6,16 @@
  >  - 소통 채널: Slack<br>
 
 ### 기획
- - **[ABOUT](https://github.com/Team-Kelly/Requirements/blob/main/documents/about.md)**
- - **[USECASE DIAGRAM](https://github.com/Team-Kelly/Requirements/blob/main/documents/usecase.md)**
+ - ~~**ABOUT**~~
+ - ~~**USECASE DIAGRAM**~~
 
 ### 개발
- - **[SEQUENCE DIAGRAM](https://github.com/Team-Kelly/Requirements/blob/main/documents/sequence.md)**
- - **[WIREFRAME](https://github.com/Team-Kelly/Requirements/blob/main/documents/wireframe.md)**
- - **[API](https://github.com/Team-Kelly/Requirements/blob/main/documents/api.md)**
- - **[E-R DIAGRAM](https://github.com/Team-Kelly/Requirements/blob/main/documents/erdiagram.md)**
+ - **(📱APP)State Diagram(Widget)[https://github.com/Team-Kelly/Requirements/blob/main/uml/AppWidgetStateDiagram.png]**
+ - **(📱APP)Class Diagram[https://github.com/Team-Kelly/Requirements/blob/main/uml/AppClassDiagram.png]**
+ - ~~**SEQUENCE DIAGRAM**~~
+ - ~~**WIREFRAME**~~
+ - ~~**API**~~
+ - ~~**E-R DIAGRAM**~~
 
 ### 일정
  - **[21년 2분기 일정표](https://github.com/Team-Kelly/Requirements/raw/main/schedule/21-1_schedule.png)**
