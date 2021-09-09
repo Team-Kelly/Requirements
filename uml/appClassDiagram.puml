@@ -11,59 +11,109 @@ abstract class Alarm {
 class WeatherAlarm {
     +int iterative
     +DateTime time
-    +WeatherAPIData data
+    +WeatherAPIDAO data
 }
 
-class TransportAlarm {
+class TransportationAlarm {
     +int iterative
     +DateTime time
-    +TransportAPIData data
+    +TransportationAPIDAO data
 }
 
-abstract class APIData {
-    +void getCurrData()
+
+class WeatherAPIDAO {
+    +WeatherAPIDTO dto
+    +void update(double latitude, double longitude)
 }
 
-class WeatherAPIData {
-    +double latitude
-    +double longitude
-    +enum WeatherState weather
-    +void getCurrentLocation()
-    +void getCurrentWeather()
+class CurrentWeatherAPIDataDTO {
+    +WeatherState weatherState
+    +PrecipitationType precipitationType
+    +double temperature
+    +double PrecipitatePercent
+    +double Precipitation
+    +double highestTemperature
+    +double lowestTemperature
+    +void update(double latitude, double longitude)
 }
 
-interface TransportAPIData {
-    +int leftTime
-    +int stationId
+class ForecastWeatherAPIDataDTO {
+    +List<WeatherState> weatherStates
+    +List<PrecipitationType> precipitationTypes
+    +List<double> highestTemperatures
+    +List<double> lowestTemperatures
+    +void update(double latitude, double longitude)
+}
+
+enum WeatherState {
+    +SUN
+    +PARTLY_SUN // 아직 잘 모름
+    +PARTLY_CLOUD
+    +CLOUD
+}
+
+enum PrecipitationType {
+    +NONE
+    +RAIN
+    +RAIN_AND_SNOW
+    +SNOW
+    +_
+    +RAINDROP
+    +RAINDROP_AND_SNOW
+    +SNOWFLAKE
+}
+
+
+
+
+
+class TransportationAPIDAO {
+    +TransportAPIDTO dto
+    +void update(???)
+}
+
+class SubwaySearchAPIDataDTO {
+    +String stationName
     +String lineName
-    +void getCurrData()
+    +String nextStationName
+    +String msg1
+    +String msg2
+    +void update(String stationName, String lineName, bool is상행)
 }
 
-class SubwayAPIData {
-    +int leftTime
-    +int stationId
-    +String lineName
-    +void getCurrData()
+class SubwayArrivalAPIDataDTO {
+
 }
 
 class BusAPIData {
-    +int leftTime
-    +int busId
-    +String lineName
-    +int stationId
-    +void getCurrData()
+    ' +int leftTime
+    ' +int busId
+    ' +String lineName
+    ' +int stationId
+    ' +void getCurrData()
 }
 
-Alarm *-right- APIData
+TransportationAPIDAO <-- SubwaySearchAPIDataDTO
+TransportationAPIDAO <-- SubwayArrivalAPIDataDTO
+TransportationAPIDAO <-- BusAPIData
+
+
+TransportationAlarm *-- TransportationAPIDAO
+
+
+WeatherAlarm *-- WeatherAPIDAO
 Alarm <-- WeatherAlarm
-Alarm <-- TransportAlarm
+Alarm <-- TransportationAlarm
 
-APIData <-- WeatherAPIData
-APIData <-- SubwayAPIData
-APIData <-- BusAPIData
+WeatherAPIDAO <-- CurrentWeatherAPIDataDTO
+WeatherAPIDAO <-- ForecastWeatherAPIDataDTO
 
-TransportAPIData <-- SubwayAPIData
-TransportAPIData <-- BusAPIData
+CurrentWeatherAPIDataDTO <-- WeatherState
+CurrentWeatherAPIDataDTO <-- PrecipitationType
+ForecastWeatherAPIDataDTO <-- WeatherState
+ForecastWeatherAPIDataDTO <-- PrecipitationType
+
+
 
 
 @enduml
