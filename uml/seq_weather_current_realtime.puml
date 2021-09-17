@@ -1,0 +1,39 @@
+@startuml seq_weather_current_realtime
+
+actor user
+actor server
+actor weather as "기상청"
+
+user -> server : request( (double)lat, (double)long )
+activate server
+
+
+server -> server : API 정보 수신
+activate server
+server -> weather : API_날씨_1_수신()
+note right: 현재 날씨 정보
+activate weather
+weather --> server : response()
+deactivate weather
+
+server -> weather : API_날씨_2_수신()
+note right: 오늘 날씨 정보
+activate weather
+weather --> server : response()
+deactivate weather
+server -> server : 수신된 raw 데이터
+deactivate server
+
+server -> server : 정보 가공
+
+activate server
+
+
+server --> server : 날씨 Object 파일
+note right : result = {\n  (int)현재기온,\n  (int)날씨상태,\n  (int)강수상태,\n  (int)강수확률,\n  (int)일최저기온,\n  (int)일최고기온\n}\n// 타입 다르면 알려주세요~
+deactivate server
+
+server --> user : 날씨 Object(JSON)\nresponse
+note left : Attribute 이름 미정
+
+@enduml

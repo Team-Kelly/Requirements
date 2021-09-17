@@ -1,0 +1,45 @@
+@startuml seq_bus_realtime
+
+actor user
+actor server
+actor gbus as "경기도 버스"
+actor sbus as "서울 버스"
+
+user -> server : request()
+
+alt 경기도버스
+
+    activate server
+    server -> gbus : API 정보 요청
+    activate server
+    activate gbus
+    gbus --> server
+    deactivate server
+    deactivate gbus
+    
+    server -> server : 가공
+    activate server
+    server -> server : 가공된 데이터
+    deactivate server
+
+else 서울버스
+
+    
+    server -> sbus : API 정보 요청
+    activate server
+    activate sbus
+    sbus --> server
+    deactivate server
+    deactivate sbus
+    
+    server -> server : 가공
+    activate server
+    server -> server : 가공된 데이터
+    deactivate server
+
+end
+
+server --> user : response
+deactivate server
+
+@enduml

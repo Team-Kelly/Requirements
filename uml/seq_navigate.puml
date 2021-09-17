@@ -1,0 +1,26 @@
+@startuml seq_navigate
+
+actor user
+actor server
+actor odsay as "오디세이"
+
+user -> server : request()
+activate server
+server -> odsay : API 정보 요청
+activate server
+activate odsay
+odsay --> server
+deactivate server
+deactivate odsay
+
+
+server -> server : 가공
+activate server
+server -> server : 가공된 데이터
+deactivate server
+
+
+server --> user : response
+deactivate server
+
+@enduml
