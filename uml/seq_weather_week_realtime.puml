@@ -3,10 +3,20 @@
 actor user
 actor server
 actor weather as "기상청"
+actor google as "Google Maps API"
 
-user -> server : request( (String)특별시도, (String)시군구 )
-note right: 서울 등 구를 구분하지 않는 경우,\n백엔드에서 무시하도록 제작할 것.\nex> 서울시 금천구 -> 금천구 무시
+user -> server : request( (double)lat, (double)long, (String)특별시도, (String)시군구 )
 activate server
+
+
+' server -> server: 행정구역명 확인
+' activate server
+' server -> google : 행정구역명_확인(lat, long)
+' activate google
+' google --> server : 행정구역명(String)
+' deactivate google
+' server -> server : 행정구역명(String)
+' deactivate server
 
 
 server -> server : API 정보 수신
@@ -16,6 +26,7 @@ note right: 오늘 날씨 정보
 activate weather
 weather --> server : response()
 deactivate weather
+
 
 server -> weather : API_날씨_3_수신()
 note right: 일주일 날씨, 기온, 강수 확률 정보
@@ -30,8 +41,8 @@ server -> server : 정보 가공
 activate server
 
 
-server --> server : 날씨 Object 파일
-note right : result = {\n  (double)강수확률(평균),\n  (int)날씨상태,\n  (int)일최고기온,\n  (int)일최저기온\n}\n// 일주일 날씨\n// 타입 다르면 알려주세요~
+server -> server : 날씨 Object 파일
+note right : result = {\n  (double)강수확률(평균),\n  (int)날씨상태   //강수상태 포함,\n  (int)일최고기온,\n  (int)일최저기온\n}\n// 일주일 날씨
 deactivate server
 
 server --> user : 날씨 Object(JSON)\nresponse

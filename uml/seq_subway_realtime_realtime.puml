@@ -1,4 +1,4 @@
-@startuml subway_realtime
+@startuml seq_subway_realtime
 
 actor user
 actor server

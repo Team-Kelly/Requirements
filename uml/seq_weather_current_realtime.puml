@@ -4,7 +4,7 @@ actor user
 actor server
 actor weather as "기상청"
 
-user -> server : request( (double)lat, (double)long )
+user -> server : request( (double)lat, (double)long, (String)특별시도 = null, (String)시군구 = null )
 activate server
 
 
@@ -29,8 +29,8 @@ server -> server : 정보 가공
 activate server
 
 
-server --> server : 날씨 Object 파일
-note right : result = {\n  (int)현재기온,\n  (int)날씨상태,\n  (int)강수상태,\n  (int)강수확률,\n  (int)일최저기온,\n  (int)일최고기온\n}\n// 타입 다르면 알려주세요~
+server -> server : 날씨 Object 파일
+note right : result = {\n  (int)현재기온,\n  (int)날씨상태   //강수상태 포함,\n  (int)강수확률,\n  (int)일최저기온,\n  (int)일최고기온\n}
 deactivate server
 
 server --> user : 날씨 Object(JSON)\nresponse
